@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::API 
+=begin
+    
+  rescue => exception
+    
+  end
   include ActionController::Cookies #provides access to cookies to all child controllers
   rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid
   before_action :authorize 
@@ -16,5 +21,7 @@ class ApplicationController < ActionController::API
   def handle_invalid(exception)
     render json: { errors: exception.record.errors.full_messages }, status: 422       # unprocessable_entity
   end
-  
+
+=end
+
 end
