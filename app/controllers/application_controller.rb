@@ -1,4 +1,19 @@
-class ApplicationController < ActionController::Base
-  #provides access to cookies to all children controllers
-  include ActionController::Cookies
+class ApplicationController < ActionController::API 
+  include ActionController::Cookies #provides access to cookies to all child controllers
+  rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid
+  before_action :authorize 
+
+
+  private 
+
+  # using instance variable to presist data for the session
+  def authorize 
+    @current_user = User.find_by(id: session[:user_id])
+    render json: { errors: ["Not authorized"]}, status: 401 unless @current_user      # unauthorized
+  end
+
+  def handle_invalid(exception)
+    render json: { errors: exception.record.errors.full_messages }, status: 422       # unprocessable_entity
+  end
+  
 end
