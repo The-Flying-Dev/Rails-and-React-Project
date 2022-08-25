@@ -37,13 +37,24 @@ group :development do
   gem 'annotate'
 end
 
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
 end
+
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver  
+  #gem 'capybara', '>= 3.26'
+  #gem 'selenium-webdriver', '>= 4.0.0.rc1'
+  # Easy installation and use of web drivers to run system tests with browsers
+  #gem 'webdrivers'
+end
+
+group :test do
+  gem 'rspec-json_expectations'
+  gem 'shoulda-matchers', '~> 4.0'
+end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
