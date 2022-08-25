@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
    # get '/me'
   def show  
-    render json: @current_user                                # returning json response
+    render json: @current_user                                
   end
 
   # post /signup

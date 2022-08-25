@@ -6,9 +6,10 @@ class ApplicationController < ActionController::API
 
   private 
 
-  # using instance variable to presist data for the session
+  # using instance variable to persist data for the session
   def authorize 
     @current_user = User.find_by(id: session[:user_id])
+    
     render json: { errors: ["Not authorized"]}, status: 401 unless @current_user      # unauthorized
   end
 
